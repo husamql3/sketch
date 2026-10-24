@@ -138,7 +138,18 @@ Contributions are welcome, including during Hacktoberfest. Read [CONTRIBUTING.md
 
 ## Team
 
-Built at **Hacktoberfest Hack Day Istanbul x Hadith Tech 2026** by the people in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+Built at **Hacktoberfest Hack Day Istanbul x Hadith Tech 2026** by:
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/husamql3"><img src="https://github.com/husamql3.png?size=100" width="100" alt="Hüsam"/><br/><sub><b>Hüsam</b></sub></a></td>
+    <td align="center"><a href="https://github.com/SohailElskhawy"><img src="https://github.com/SohailElskhawy.png?size=100" width="100" alt="Sohail Elskhawy"/><br/><sub><b>Sohail Elskhawy</b></sub></a></td>
+    <td align="center"><a href="https://github.com/SerialSeller"><img src="https://github.com/SerialSeller.png?size=100" width="100" alt="MUHAMMED ABDULEKRIM"/><br/><sub><b>MUHAMMED ABDULEKRIM</b></sub></a></td>
+    <td align="center"><a href="https://github.com/mohamedmaghraby20"><img src="https://github.com/mohamedmaghraby20.png?size=100" width="100" alt="mohamedmaghraby20"/><br/><sub><b>mohamedmaghraby20</b></sub></a></td>
+  </tr>
+</table>
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for contact details.
 
 ## License
 
