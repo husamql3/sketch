@@ -1,3 +1,3 @@
 # Contributors
 
-- [Hüsam](https://github.com/husamql3)
+- [Hüsam](https://github.com/husamql3) - husamahmud@gmail.com
