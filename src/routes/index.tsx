@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState, type ComponentType } from 'react'
 import { flushSync } from 'react-dom'
 import type { Session } from '../tutor/Board'
-import { Intake } from '../tutor/Intake'
+import { Landing } from '../tutor/Landing'
 
 export const Route = createFileRoute('/')({ component: Home })
 
@@ -21,5 +21,5 @@ function Home() {
   }
 
   if (session && Board) return <Board session={session} />
-  return <Intake ready={!!Board} onStart={start} />
+  return <Landing ready={!!Board} onStart={start} />
 }

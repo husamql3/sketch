@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Session } from './Board'
 
 // The opening chat: course material plus an optional first question. Submitting moves everything onto the board.
@@ -11,6 +11,33 @@ export function Intake({ ready, onStart }: { ready: boolean; onStart: (s: Sessio
 
   const add = (list: FileList | null) => list && setFiles((f) => [...f, ...Array.from(list)])
   const canStart = ready && (files.length > 0 || goal.trim() !== '')
+
+  // Files can be dropped anywhere on the page, as before; the composer just mirrors the drag state.
+  useEffect(() => {
+    const hasFiles = (e: DragEvent) => Array.from(e.dataTransfer?.types ?? []).includes('Files')
+    const over = (e: DragEvent) => {
+      if (!hasFiles(e)) return
+      e.preventDefault()
+      setDragging(true)
+    }
+    const leave = (e: DragEvent) => {
+      if (!e.relatedTarget) setDragging(false)
+    }
+    const drop = (e: DragEvent) => {
+      if (!hasFiles(e)) return
+      e.preventDefault()
+      setDragging(false)
+      add(e.dataTransfer?.files ?? null)
+    }
+    window.addEventListener('dragover', over)
+    window.addEventListener('dragleave', leave)
+    window.addEventListener('drop', drop)
+    return () => {
+      window.removeEventListener('dragover', over)
+      window.removeEventListener('dragleave', leave)
+      window.removeEventListener('drop', drop)
+    }
+  }, [])
 
   async function submit() {
     if (!canStart) return
@@ -25,27 +52,8 @@ export function Intake({ ready, onStart }: { ready: boolean; onStart: (s: Sessio
   }
 
   return (
-    <main
-      className="board-dots grid min-h-dvh place-items-center px-6"
-      onDragOver={(e) => {
-        e.preventDefault()
-        setDragging(true)
-      }}
-      onDragLeave={(e) => e.currentTarget === e.target && setDragging(false)}
-      onDrop={(e) => {
-        e.preventDefault()
-        setDragging(false)
-        add(e.dataTransfer.files)
-      }}
-    >
-      <div className="w-full max-w-[640px]">
-        <h1 className="mb-2 text-center text-[28px] font-semibold text-balance text-white">
-          ما الذي تريد أن تفهمه؟
-        </h1>
-        <p className="mb-8 text-center text-[15px] text-zinc-400">
-          أحضر مادة مقررك، وتحدّث عمّا لا تفهمه، ولنحلّه معًا على اللوح.
-        </p>
-
+    <section className="relative">
+      <div className="w-full">
         <form
           style={{ viewTransitionName: 'composer' }}
           className={`rounded-2xl border bg-[#1a1a1d]/95 shadow-2xl shadow-black/60 backdrop-blur transition-colors ${dragging ? 'border-sky-400/70' : 'border-white/10'}`}
@@ -77,7 +85,6 @@ export function Intake({ ready, onStart }: { ready: boolean; onStart: (s: Sessio
             </ul>
           )}
           <textarea
-            autoFocus
             rows={3}
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
@@ -130,10 +137,10 @@ export function Intake({ ready, onStart }: { ready: boolean; onStart: (s: Sessio
           </p>
         )}
         <p className="mt-4 text-center text-[13px] text-zinc-500">
-          أفلِت ملفات PDF أو ملاحظاتك في أي مكان. تحدّث بصوتك، ويمكنك المقاطعة في أي وقت.
+          أفلِت ملفات PDF أو ملاحظاتك في أي مكان. تحدّث بصوتك، ويمكنك مقاطعة المعلّم في أي وقت.
         </p>
       </div>
-    </main>
+    </section>
   )
 }
 
