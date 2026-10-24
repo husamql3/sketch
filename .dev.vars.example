@@ -1,0 +1,3 @@
+ELEVENLABS_API_KEY=
+# Filled in by `bun run agent`
+ELEVENLABS_AGENT_ID=

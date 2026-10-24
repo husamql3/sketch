@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: dark;
+  --board: #101011;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--board);
+  color: #e8e8ea;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dot grid so the intake page reads as the board before you enter it. */
+.board-dots {
+  background-color: var(--board);
+  background-image: radial-gradient(circle, #2b2b30 1px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Intake -> board: the page zooms into the board while the composer morphs into the call dock. */
+::view-transition-old(root) {
+  animation: 380ms cubic-bezier(0.4, 0, 1, 1) both board-leave;
+}
+::view-transition-new(root) {
+  animation: 520ms cubic-bezier(0.2, 0.8, 0.2, 1) 80ms both board-enter;
+}
+::view-transition-group(composer) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes board-leave {
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+    filter: blur(6px);
+  }
+}
+@keyframes board-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@keyframes orb-pulse {
+  50% {
+    transform: scale(1.18);
+    opacity: 0.75;
+  }
+}
