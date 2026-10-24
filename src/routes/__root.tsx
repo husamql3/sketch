@@ -9,7 +9,10 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'سكتش: معلّم صوتي (نموذج أولي)' },
     ],
-    links: [{ rel: 'stylesheet', href: appCss }],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+      { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+    ],
   }),
   shellComponent: ({ children }: { children: ReactNode }) => (
     <html lang="ar" dir="rtl" className="dark">
