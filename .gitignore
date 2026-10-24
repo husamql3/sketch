@@ -4,3 +4,17 @@ dist
 .tanstack
 .dev.vars
 .agent-backup.json
+
+# Local secrets (only the example files are committed)
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+
+# Logs and OS/editor files
+*.log
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json

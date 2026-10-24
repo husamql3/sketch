@@ -1,0 +1,41 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Drop a PDF and type "..."
+        2. Interrupt while the tutor draws
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Browser console output, terminal output, or the lesson timeline. Remove any API keys or agent IDs.
+      render: text
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 141 on macOS 26
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where does it happen?
+      options:
+        - Local dev (bun dev)
+        - Deployed Worker
+        - Agent setup (bun run agent)
+        - Build or typecheck
